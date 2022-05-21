@@ -1,0 +1,117 @@
+@model List<Order>
+@using System.Globalization
+@{
+    ViewData["Title"] = "Checkot Page";
+    Layout = "~/Views/Shared/Front/_Layout.cshtml";
+    Thread.CurrentThread.CurrentCulture = new CultureInfo("lk-LK");
+}
+<style>
+    .cart__btn__list li a
+    {
+        background: #839db6 none repeat scroll 0 0;
+    }
+
+    .mainmenu__nav .meninmenu li a
+    {
+            color: #000;
+    }
+
+	.blureffect
+	{
+		/* Add the blur effect */
+		filter: blur(1px);
+		-webkit-filter: blur(1px);
+	}
+    .section-padding--lg {
+        padding: 40px 0 80px 0;
+    }
+</style>
+
+        <div class="ht__bradcaump__area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner">
+                        	<h2 class="bradcaump-title">My Orders 
+                            </h2>
+                            <nav class="bradcaump-content">
+                              <a class="breadcrumb_item" asp-route="Home">Home</a>
+                              <span class="brd-separetor">>></span>
+                              <span class="breadcrumb_item active">Orders</span>
+							  <span class="brd-separetor">>></span>
+                              <span class="breadcrumb_item active">My Orders</span>
+                            </nav>
+                        </div>
+						<hr style="margin-top:10px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="cart-main-area section-padding--lg bg--white mt--10">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+        				<div class="section__title--3 text-center pb--30">
+        					<h2>My Orders</h2>
+        					@* <p>the right people for your project</p> *@
+        				</div>
+        			</div>
+                    <div class="col-md-12 col-sm-12 ol-lg-12">
+                                      
+                            <div class="table-content wnro__table table-responsive" style="overflow-x: unset;">
+                              
+                                <table class="" style="height: 100%;">
+                                    <thead>
+                                        <tr class="title-top">
+                                            
+                                            <th class="product-quantity">Order ID</th>
+                                            <th class="product-name">Items</th>
+                                            <th class="product-price">Total</th>
+                                            <th class="product-subtotal">View Order</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            
+                                        }
+                                        @foreach (var item in Model)
+                                        { 
+                                            int i = 0;
+                                            
+                                          <tr>
+                                            
+                                            <td class="product-quantity"><a href="#">@item.Id</a></td>
+                                            <td class="product-name" style="text-align: left;">  
+                                                @foreach (var order in item.OrderItems)
+                                                {
+                                                    i++;
+                                                    <strong>@i. @order.Book.Name</strong>
+                                                    <br>
+                                                }
+                                            </td>
+                                            <td class="product-price">
+                                                <span class="amount">@item.OrderItems.Select(b => b.Book.Price * b.Amount).Sum().ToString("c")</span>
+                                                
+                                             </td>
+                                            <td class="product-price">
+                                                <a asp-action="OrderConfirmed" asp-route-orderid="@item.Id">View Order</a>
+                                            </td>
+                                            
+                                            
+                                          </tr>
+                                       }
+                                    </tbody>
+                                </table> 
+                             
+                            </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <!-- cart-main-area end -->
+
+

@@ -1,0 +1,74 @@
+@model IEnumerable<Book>
+
+@{
+    ViewData["Title"] = "List of Books";
+    ViewData["Head"] = "Books Management";
+    ViewData["Books"] = "active";
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+}
+
+
+    
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title"> 
+                    <a asp-action="Create" class="btn btn-primary"><i class="la la-plus">&nbsp;Add New Book &nbsp;</i></a>
+                </h4>
+				<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+				<div class="heading-elements">
+					<ul class="list-inline mb-0">
+						<li><a><i>Books List</i></a></li>
+						@* <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li> *@
+						<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+						@* <li><a data-action="close"><i class="ft-x"></i></a></li> *@
+					</ul>
+				</div>
+			</div>
+			<div class="card-content collapse show">
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>Publisher</th>
+									<th>Published Date</th>
+                                    <th>Price</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+                                @{
+                                    int i = 0;
+                                }
+                                @foreach (var item in Model)
+                                {
+                                    i++;
+                                    <tr>
+                                        <th scope="row">@i</th>
+                                        <td> <a asp-route="BookView" asp-route-slug="@item.Slug" target="_@item.Name"> @item.Name</a></td>
+                                        
+                                        <td>@item.Publisher.Name</td>
+                                        <td>@item.PublishDate</td>
+                                        <td>@item.Price</td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-slug="@item.Slug" class="btn btn-outline-primary"><i class="la la-pencil-square">&nbsp;Edit &nbsp;</i></a>
+                                            <br><br>
+                                            <a asp-action="DeleteBook" asp-route-id="@item.Id" class="btn btn-outline-danger"> <i class="la la-trash"> Delete</i> </a>
+                                        </td>
+                                    </tr>
+                                }
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

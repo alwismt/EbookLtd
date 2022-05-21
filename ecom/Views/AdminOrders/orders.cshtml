@@ -1,0 +1,74 @@
+@model List<Order>
+
+@{
+    ViewData["Title"] = "List of Orders";
+    ViewData["Head"] = "Orders Management";
+    ViewData["Orders"] = "active";
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+}
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				@* <h4 class="card-title"> 
+                    <a asp-action="Create" class="btn btn-primary"><i class="la la-plus">&nbsp;Add New Book &nbsp;</i></a>
+                </h4> *@
+				<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+				<div class="heading-elements">
+					<ul class="list-inline mb-0">
+						<li><a><i>Orders List</i></a></li>
+						@* <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li> *@
+						<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+						@* <li><a data-action="close"><i class="ft-x"></i></a></li> *@
+					</ul>
+				</div>
+			</div>
+			<div class="card-content collapse show">
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Order ID</th>
+									<th>Items</th>
+                                    <th>Price</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+                                @{
+                                    int i = 0;
+                                }
+                                @foreach (var item in Model)
+                                {
+                                    i++;
+                                    int f = 0;
+                                    <tr>
+                                        <th scope="row">@i</th>
+                                        <td> @item.Id</td>
+                                        <td>
+                                            
+                                            @foreach (var order in item.OrderItems)
+                                            {
+                                                f++;
+                                                <i>@f. @order.Book.Name</i>
+                                                <br>
+                                            }
+                                        </td>
+                                        <td>@item.OrderItems.Select(b => b.Book.Price * b.Amount).Sum().ToString("c")</td>
+                                        <td>
+                                            <a asp-action="OrderConfirmed" asp-controller="Orders" asp-route-orderid="@item.Id" class="btn btn-outline-primary"><i class="la la-pencil-square">&nbsp;View &nbsp;</i></a>
+                                        </td>
+                                    </tr>
+                                }
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,77 @@
+@model IEnumerable<Writter>
+
+@{
+    ViewData["Title"] = "List of Writers";
+    ViewData["Head"] = "Writers Management";
+    ViewData["Writers"] = "active";
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+}
+@* @{
+    Layout = null;
+} *@
+
+
+    
+
+<!-- Basic Tables start -->
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title"> 
+                    <a href='@Url.RouteUrl("NewWriter")' class="btn btn-primary"><i class="la la-plus">&nbsp;Add New Writer &nbsp;</i></a>
+                </h4>
+				<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+				<div class="heading-elements">
+					<ul class="list-inline mb-0">
+						<li><a><i>Witers List</i></a></li>
+						@* <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li> *@
+						<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+						@* <li><a data-action="close"><i class="ft-x"></i></a></li> *@
+					</ul>
+				</div>
+			</div>
+			<div class="card-content collapse show">
+				<div class="card-body">
+					@* <p class="card-text">Using the most basic table markup, here’s how <code>.table</code>-based tables look in Bootstrap. You can use any example of below table for your table and it can be use with any type of bootstrap tables. </p>
+					<p><span class="text-bold-600">Example 1:</span> Table with outer spacing</p> *@
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>Image</th>
+									<th>Biography</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+                                @{
+                                    int i = 0;
+                                }
+                                @foreach (var writter in Model)
+                                {
+                                    i++;
+                                    <tr>
+                                        <th scope="row">@i</th>
+                                        <td>@writter.Name</td>
+                                        <td><img class="rounded-circle" src="@writter.Image" alt="@writter.Name" style="max-width: 100px;"></td>
+                                        <td>@Html.DisplayFor(modelItem => writter.Bio)</td>
+                                        <td>
+                                            <a asp-action="edit" asp-route-id="@writter.Id" class="btn btn-outline-primary"><i class="la la-pencil-square">&nbsp;Edit &nbsp;</i></a>
+                                            <br><br>
+                                            <a asp-route="delete" asp-route-id="@writter.Id" class="btn btn-outline-danger"> <i class="la la-trash"> Delete</i> </a>
+                                        </td>
+                                    </tr>
+                                }
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Basic Tables end -->

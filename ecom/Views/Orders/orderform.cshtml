@@ -1,0 +1,170 @@
+@using ecom.Data.ViewModels
+@model RegisterVm
+
+                    <form asp-action="OrderSave" method="post">
+						<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        				<div class="customer_details">
+        					<h3>Billing details Not logged</h3>
+							@if(TempData["Error"] != null)
+							{
+								<span class="text-danger">@TempData["Error"]</span>
+							}
+							
+        					<div class="customar__field">
+        						<div class="margin_between">
+	        						<div class="input_box space_between">
+	        							<label>First name <span>*</span></label>
+	        							<input type="text" asp-for="FirstName"  required>
+										<span asp-validation-for="FirstName" class="text-danger"></span>
+	        						</div>
+	        						<div class="input_box space_between">
+	        							<label>last name <span>*</span></label>
+	        							<input type="text" asp-for="LastName" required>
+										<span asp-validation-for="LastName" class="text-danger"></span>
+	        						</div>
+        						</div>
+        						@* <div class="input_box">
+        							<label>Company name <span>*</span></label>
+        							<input type="text">
+        						</div> *@
+        						<div class="input_box">
+        							<label>Country<span>*</span> <small>(At the moment we only deliver to Sri Lanka.)</small></label>
+        							<select class="select__option" disabled>
+										<option selected>Sri Lanka</option>
+        							</select>
+        						</div>
+        						<div class="input_box">
+        							<label>Address <span>*</span></label>
+        							<input type="text" placeholder="Street address" asp-for="Address" required>
+									<span asp-validation-for="Address" class="text-danger"></span>
+        						</div>
+        						<div class="input_box">
+        							<input type="text" asp-for="Apartment" placeholder="Apartment, suite, unit etc. (optional)">
+									<span asp-validation-for="Apartment" class="text-danger"></span>
+        						</div>
+        						<div class="input_box">
+        							<label>District<span>*</span></label>
+                                    <input type="text" asp-for="District" required>
+									<span asp-validation-for="District" class="text-danger"></span>
+        						</div>
+								<div class="input_box">
+									<label>Postcode / ZIP <span>*</span></label>
+									<input type="text" asp-for="Postcode" required>
+									<span asp-validation-for="Postcode" class="text-danger"></span>
+								</div>
+								<div class="margin_between">
+									<div class="input_box space_between">
+										<label>Phone <span>*</span></label>
+										<input type="text" asp-for="PhoneNumber" required>
+										<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+									</div>
+
+									<div class="input_box space_between">
+										<label>Email address <span>*</span></label>
+										<input type="email" asp-for="EmailAddress" required>
+										<span asp-validation-for="EmailAddress" class="text-danger"></span>
+									</div>
+								</div>
+								<div class="margin_between">
+									<div class="input_box  space_between">
+										<label>Account password <span>*</span></label>
+										<input asp-for="Password" placeholder="Enter password">
+										<span asp-validation-for="Password" class="text-danger"></span>
+									</div>
+									<div class="input_box  space_between">
+										<label>Retype password <span>*</span></label>
+										<input asp-for="ConfirmPassword" placeholder="Confirm password">
+										<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+									</div>
+
+								</div>
+        					</div>
+                            
+        					@* <div class="create__account">
+        						<div class="wn__accountbox">
+	        						<input class="input-checkbox" name="createaccount" value="1" type="checkbox">
+	        						<span>Create an account ?</span>
+        						</div>
+                                
+        						<div class="account__field">
+        							<form action="#">
+        								<label>Account password <span>*</span></label>
+        								<input type="text" placeholder="password">
+        							</form>
+        						</div>
+        					</div> *@
+        				</div>
+						@* <div class="differt__address">
+	        					<input name="ship_to_different_address" value="1" type="checkbox">
+	        					<span>Ship to a different address ?</span>
+        					</div> *@
+        				<div class="customer_details mt--20">
+        					<div class="">
+	        					<input class="differt__address" id="ship_to_different_address" name="ship_to_different_address" type="checkbox">
+	        					<span class="differt__address" id="different_address_tick"> &nbsp; Ship to a different address ?</span>
+        					</div>
+        					<div class="customar__field differt__form mt--40">
+        						<div class="margin_between">
+	        						<div class="input_box space_between">
+	        							<label>First name <span>*</span></label>
+	        							<input type="text">
+	        						</div>
+	        						<div class="input_box space_between">
+	        							<label>last name <span>*</span></label>
+	        							<input type="text">
+	        						</div>
+        						</div>
+        						<div class="input_box">
+        							<label>Company name <span>*</span></label>
+        							<input type="text">
+        						</div>
+        						<div class="input_box">
+        							<label>Country<span>*</span></label>
+        							<select class="select__option">
+										<option>Select a country…</option>
+										<option>Afghanistan</option>
+										<option>American Samoa</option>
+										<option>Anguilla</option>
+										<option>American Samoa</option>
+										<option>Antarctica</option>
+										<option>Antigua and Barbuda</option>
+        							</select>
+        						</div>
+        						<div class="input_box">
+        							<label>Address <span>*</span></label>
+        							<input type="text" placeholder="Street address">
+        						</div>
+        						<div class="input_box">
+        							<input type="text" placeholder="Apartment, suite, unit etc. (optional)">
+        						</div>
+        						<div class="input_box">
+        							<label>District<span>*</span></label>
+        							<select class="select__option"> 
+										<option>Select a country…</option>
+										<option>Afghanistan</option>
+										<option>American Samoa</option>
+										<option>Anguilla</option>
+										<option>American Samoa</option>
+										<option>Antarctica</option>
+										<option>Antigua and Barbuda</option>
+        							</select>
+        						</div>
+								<div class="input_box">
+									<label>Postcode / ZIP <span>*</span></label>
+									<input type="text">
+								</div>
+								<div class="margin_between">
+									<div class="input_box space_between">
+										<label>Phone <span>*</span></label>
+										<input type="text">
+									</div>
+									<div class="input_box space_between">
+										<label>Email address <span>*</span></label>
+										<input type="email">
+									</div>
+								</div>
+        					</div>
+        				</div>
+
+                        <button class="btn btn-lg" style="width: 100%; margin-top:20px;">Checkout</button>
+                    </form>

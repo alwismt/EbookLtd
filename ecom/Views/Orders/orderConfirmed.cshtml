@@ -1,0 +1,234 @@
+@model Order
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Checkot Page";
+    Layout = "~/Views/Shared/Front/_Layout.cshtml";
+    Thread.CurrentThread.CurrentCulture = new CultureInfo("lk-LK");
+}
+<style>
+        .section-padding--lg {
+            padding: 20px 0 80px 0;
+        }
+</style>
+
+<style>
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.anchor a {
+  color: #5D6975;
+  text-decoration: underline;
+}
+
+
+
+.anchor header {
+  padding: 10px 0;
+  margin-bottom: 30px;
+}
+
+.anchor #logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.anchor #logo img {
+  width: 90px;
+}
+
+.anchor h1 {
+  border-top: 1px solid  #5D6975;
+  border-bottom: 1px solid  #5D6975;
+  color: #5D6975;
+  font-size: 2.4em;
+  line-height: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 0 20px 0;
+  background: url(dimension.png);
+}
+
+.anchor #project {
+  float: left;
+}
+
+.anchor #project span {
+  color: #5D6975;
+  text-align: right;
+  width: 52px;
+  margin-right: 10px;
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+.anchor #company {
+  float: right;
+  text-align: right;
+}
+
+.anchor #project div,
+.anchor #company div {
+  white-space: nowrap;        
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+}
+
+table tr:nth-child(2n-1) td {
+  background: #F5F5F5;
+}
+
+table th,
+table td {
+  text-align: center;
+}
+
+table th {
+  padding: 5px 20px;
+  color: #5D6975;
+  border-bottom: 1px solid #C1CED9;
+  white-space: nowrap;        
+  font-weight: normal;
+}
+
+table .service,
+table .desc {
+  text-align: left;
+}
+
+table td {
+  padding: 20px;
+  text-align: right;
+}
+
+table td.service,
+table td.desc {
+  vertical-align: top;
+}
+
+table td.unit,
+table td.qty,
+table td.total {
+  font-size: 1.2em;
+}
+
+table td.grand {
+  border-top: 1px solid #5D6975;;
+}
+
+</style>
+
+        <div class="ht__bradcaump__area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner">
+                        	<h2 class="bradcaump-title">Invoice
+                                <span class="brd-separetor">>></span>
+                                @Model.Id
+                            </h2>
+                            <nav class="bradcaump-content">
+                              <a class="breadcrumb_item" asp-route="Home">Home</a>
+                              <span class="brd-separetor">>></span>
+                              <span class="breadcrumb_item active">Order</span>
+							  <span class="brd-separetor">>></span>
+                              <span class="breadcrumb_item active">Invoice</span>
+							  <span class="brd-separetor">>></span>
+                              <span class="breadcrumb_item active">@Model.Id</span>
+                            </nav>
+                        </div>
+						<hr style="margin-top:10px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+<section class="cart-main-area section-padding--lg bg--white mt--10">
+    <div class="container">
+        <div class="row anchor">
+            <div class="offset-md-1 col-md-10 col-sm-12 offset-lg-1 col-lg-10">
+                <header class="clearfix">
+                    <div id="logo" class="pb--30">
+                        <img src="~/images/logo/logo.png">
+                    </div>
+                    <h1>INVOICE @Model.Id</h1>
+                    <div id="company" class="clearfix">
+                        <div><b>Billing Details</b></div>
+                        <div>@Model.Address.FullName </div>
+                        <div>@Model.Address.ShipAddress, <Br/>@if(Model.Address.Apartment != null){ <c>@Model.Address.Apartment,</c>}  @Model.Address.District, @Model.Address.Postcode</div>
+                        <div>@Model.User.PhoneNumber</div>
+                        <div><a href="mailto:@Model.User.Email">@Model.User.Email</a></div>
+                    </div>
+                    <div id="project">
+                      
+                        <div><b>Shipping Details</b></div>
+                        <div></div>
+                        <div><b>Name :</b>
+                        @Model.User.FirstName  @Model.User.LastName 
+                        </div>
+                        <div><b>ADDRESS : </b>
+                          @Model.Address.ShipAddress, @if(Model.Address.Apartment != null){ <c>@Model.Address.Apartment,</c>} @Model.Address.District
+                        </div>
+                        <div><b>Mobile No :</b>  @Model.User.PhoneNumber</div>
+                        @* <div><b>Order Date :</b> September 17, 2015</div> *@
+                    </div>
+                </header>
+                <main>
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="service">ID</th>
+                        <th class="desc">Book Name</th>
+                        <th>PRICE</th>
+                        <th>QTY</th>
+                        <th>TOTAL</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @{
+                        double sumPrice = 0;
+                        int i = 0;
+                    }
+                    @foreach (var item in Model.OrderItems)
+                    { 
+                        i++;
+                        <tr>
+                            <td class="service">@i</td>
+                            <td class="desc">@item.Book.Name</td>
+                            <td class="unit">@item.Book.Price.ToString("c")</td>
+                            <td class="qty">@item.Amount</td>
+                            <td class="total">@((item.Amount*item.Book.Price).ToString("c"))</td>
+                        </tr>
+                        
+                        sumPrice += (item.Amount*item.Book.Price);
+                        
+                    } 
+                    
+                    <tr>
+                        <td colspan="4">SUBTOTAL</td>
+                        <td class="total">@sumPrice.ToString("c")</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="grand total">GRAND TOTAL</td>
+                        <td class="grand total">@sumPrice.ToString("c")</td>
+                    </tr>
+                    </tbody>
+                </table>
+                
+                </main>
+    
+   
+            </div>
+        </div>
+    </div>
+</section>

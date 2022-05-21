@@ -1,0 +1,135 @@
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<ApplicationUser> UserManager;
+<header id="wn__header" class="header__area header__absolute sticky__header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6 col-sm-6 col-6 col-lg-2">
+						<div class="logo">
+							<a asp-route="Home">
+								<img src="~/images/logo/ad_logo.png" alt="logo images">
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-8 d-none d-lg-block">
+						<nav class="mainmenu__nav">
+							<ul class="meninmenu d-flex justify-content-start">
+								<li class="drop with--one--item"><a asp-route="Home">Home</a>
+								</li>
+								<li class="drop"><a asp-route="Shop">All Product</a>
+								</li>
+								@* <li class="drop"><a href="shop-grid.html">Books</a>
+									<div class="megamenu mega03">
+										<ul class="item item03">
+											<li class="title">Categories</li>
+											<li><a href="shop-grid.html">Biography </a></li>
+											<li><a href="shop-grid.html">Business </a></li>
+											<li><a href="shop-grid.html">Cookbooks </a></li>
+											<li><a href="shop-grid.html">Health & Fitness </a></li>
+											<li><a href="shop-grid.html">History </a></li>
+										</ul>
+										<ul class="item item03">
+											<li class="title">Customer Favourite</li>
+											<li><a href="shop-grid.html">Mystery</a></li>
+											<li><a href="shop-grid.html">Religion & Inspiration</a></li>
+											<li><a href="shop-grid.html">Romance</a></li>
+											<li><a href="shop-grid.html">Fiction/Fantasy</a></li>
+											<li><a href="shop-grid.html">Sleeveless</a></li>
+										</ul>
+										<ul class="item item03">
+											<li class="title">Collections</li>
+											<li><a href="shop-grid.html">Science </a></li>
+											<li><a href="shop-grid.html">Fiction/Fantasy</a></li>
+											<li><a href="shop-grid.html">Self-Improvemen</a></li>
+											<li><a href="shop-grid.html">Home & Garden</a></li>
+											<li><a href="shop-grid.html">Humor Books</a></li>
+										</ul>
+									</div>
+								</li> *@
+								
+								<li><a asp-controller="Home" asp-action="aboutus">About Us</a></li>
+								<li><a asp-controller="Home" asp-action="contactus">Contact Us</a></li>
+							</ul>
+						</nav>
+					</div>
+					<div class="col-md-6 col-sm-6 col-6 col-lg-2">
+						<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
+							@if(User.Identity.IsAuthenticated)
+							{
+								@* <li style="margin-right: 20px; color: #2f5a85;">Hello @UserManager.GetUserName(User)</li> *@
+							}
+							
+							<li class="shop_search" style="margin-right: 20px;"><a class="search__active" href="#"></a></li>
+							@* <li class="wishlist"><a href="#"></a></li> *@
+							<li class="shopcart"><a asp-controller="Orders" asp-action="Index"><span class="product_qun"> @await Component.InvokeAsync("ShoppingCartSummary") </span></a>
+								
+							</li>
+							<li class="setting__bar__icon"><a class="setting__active" href="#"> </a>
+								<div class="searchbar__content setting__block">
+									<div class="content-inner">
+										
+										<div class="switcher-currency">
+											<strong class="label switcher-label">
+												<span>My Account</span>
+											</strong>
+											<div class="switcher-options">
+												<div class="switcher-currency-trigger">
+													<div class="setting__menu">
+														@* <span><a href="#">Compare Product</a></span> *@
+														@if(User.Identity.IsAuthenticated)
+														{
+															@if (User.IsInRole("Admin"))
+															{
+																<span><a asp-action="Index" asp-controller="Dashboard">Admin Dashboard</a></span>
+																<span><a onclick="document.getElementById('formLogout').submit();">Sign Out</a></span>
+																<form id="formLogout" asp-controller="Account" asp-action="Logout" method="post"></form>
+															}
+															else{
+															@* <span><a href="#">My Account</a></span> *@
+															<span><a asp-action="MyOrders" asp-controller="Orders">My Orders</a></span>
+															<span><a onclick="document.getElementById('formLogout').submit();">Sign Out</a></span>
+															<form id="formLogout" asp-controller="Account" asp-action="Logout" method="post"></form>
+																
+															}
+														}
+														else{
+															<span><a asp-controller="Account" asp-action="Login">Sign In</a></span>
+
+															@* <span><a href="#">Create An Account</a></span> *@
+														}
+														
+
+														
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- Start Mobile Menu -->
+				<div class="row d-none">
+					<div class="col-lg-12 d-none">
+						<nav class="mobilemenu__nav">
+							<ul class="meninmenu">
+								<li><a asp-route="Home">Home</a></li>
+								
+								<li><a asp-route="Shop">Shop</a></li>
+								
+								<li><a href="contact.html">Contact</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<!-- End Mobile Menu -->
+	            <div class="mobile-menu d-block d-lg-none">
+	            </div>
+	            <!-- Mobile Menu -->	
+			</div>		
+		</header>
+		<!-- //Header -->
+		

@@ -1,0 +1,164 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ecom
+build_property.RootNamespace = ecom
+build_property.ProjectDir = /www/wwwroot/aspnet/aspnet/ecom/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /www/wwwroot/aspnet/aspnet/ecom
+build_property._RazorSourceGeneratorDebug = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Account/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9sb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/AdminOrders/orders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW5PcmRlcnMvb3JkZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/AdminUser/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW5Vc2VyL2luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Books/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9va3MvY3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Books/edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9va3MvZWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Books/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9va3MvaW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Dashboard/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL2luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Home/aboutUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9hYm91dFVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Home/BookView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Cb29rVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Home/contactUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9jb250YWN0VXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Home/shop.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9zaG9wLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Orders/cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL2NhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Orders/checkout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL2NoZWNrb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Orders/checkoutLogged.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL2NoZWNrb3V0TG9nZ2VkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Orders/loggedform.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL2xvZ2dlZGZvcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Orders/myOrders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL215T3JkZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Orders/orderConfirmed.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL29yZGVyQ29uZmlybWVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Orders/orderform.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL29yZGVyZm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Publishers/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHVibGlzaGVycy9jcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Publishers/edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHVibGlzaGVycy9lZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Publishers/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHVibGlzaGVycy9pbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Shared/Admin/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0FkbWluL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Shared/Admin/_Sidebar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0FkbWluL19TaWRlYmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Shared/Components/ShoppingCartSummary/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvU2hvcHBpbmdDYXJ0U3VtbWFyeS9EZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Shared/Front/Header.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Zyb250L0hlYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Shared/Front/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Zyb250L19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Shared/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL05vdEZvdW5kLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Writters/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvV3JpdHRlcnMvY3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Writters/edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvV3JpdHRlcnMvZWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Writters/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvV3JpdHRlcnMvaW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/www/wwwroot/aspnet/aspnet/ecom/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-nkt28fnixf

@@ -1,0 +1,295 @@
+@using ecom.Data.ViewModels
+@model RegisterVm
+@using System.Globalization
+@{
+    ViewData["Title"] = "Checkot Page";
+    Layout = "~/Views/Shared/Front/_Layout.cshtml";
+    Thread.CurrentThread.CurrentCulture = new CultureInfo("lk-LK");
+
+	var cartData = ViewBag.cartdata;
+	
+}
+<style>
+    .cart__btn__list li a
+    {
+        background: #839db6 none repeat scroll 0 0;
+    }
+
+    .mainmenu__nav .meninmenu li a
+    {
+            color: #000;
+    }
+
+	.blureffect
+	{
+		/* Add the blur effect */
+		filter: blur(1px);
+		-webkit-filter: blur(1px);
+	}
+    .section-padding--lg {
+        padding: 40px 0 80px 0;
+    }
+</style>
+
+        <div class="ht__bradcaump__area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner">
+                        	<h2 class="bradcaump-title">Checkout 
+                                <span class="brd-separetor">>></span>
+                                Address
+                            </h2>
+                            <nav class="bradcaump-content">
+                              <a class="breadcrumb_item" asp-route="Home">Home</a>
+                              <span class="brd-separetor">>></span>
+                              <span class="breadcrumb_item active">Checkout</span>
+							  <span class="brd-separetor">>></span>
+                              <span class="breadcrumb_item active">Address</span>
+                            </nav>
+                        </div>
+						<hr style="margin-top:10px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- cart-main-area start -->
+
+
+
+
+        <!-- Start Checkout Area -->
+        <section class="wn__checkout__area section-padding--lg bg__white">
+        	<div class="container">
+				@if(!User.Identity.IsAuthenticated){
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="wn_checkout_wrap">
+								<div class="checkout_info">
+									<span>Returning customer ?</span>
+									<a class="showlogin" href="#">Click here to login</a>
+								</div>
+								<div class="checkout_login">
+									<form class="wn__checkout__form">
+										<p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
+
+										<div class="input__box">
+											<label>Username or email <span>*</span></label>
+											<input type="text">
+										</div>
+
+										<div class="input__box">
+											<label>password <span>*</span></label>
+											<input type="password">
+										</div>
+										<div class="form__btn">
+											<button>Login</button>
+											<label class="label-for-checkbox">
+												<input id="rememberme" name="rememberme" value="forever" type="checkbox">
+												<span>Remember me</span>
+											</label>
+											<a href="#">Lost your password?</a>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+        		<div class="row">
+        			<div class="col-lg-6 col-12">
+						<form asp-action="OrderSave" method="post">
+							
+						<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        				<div class="customer_details">
+        					<h3>Billing details</h3>
+							@if(TempData["Error"] != null)
+							{
+								<span class="text-danger">@TempData["Error"]</span>
+							}
+							
+        					<div class="customar__field">
+        						<div class="margin_between">
+	        						<div class="input_box space_between">
+	        							<label>First name <span>*</span></label>
+	        							<input type="text" asp-for="FirstName"   required>
+										<span asp-validation-for="FirstName" class="text-danger"></span>
+	        						</div>
+	        						<div class="input_box space_between">
+	        							<label>last name <span>*</span></label>
+	        							<input type="text" asp-for="LastName" required  >
+										<span asp-validation-for="LastName" class="text-danger"></span>
+	        						</div>
+        						</div>
+        						@* <div class="input_box">
+        							<label>Company name <span>*</span></label>
+        							<input type="text">
+        						</div> *@
+        						<div class="input_box">
+        							<label>Country<span>*</span> <small>(At the moment we only deliver to Sri Lanka.)</small></label>
+        							<select class="select__option"  disabled >
+										<option selected>Sri Lanka</option>
+        							</select>
+        						</div>
+        						<div class="input_box">
+        							<label>Address <span>*</span></label>
+        							<input type="text" placeholder="Street address" asp-for="Address" required  >
+									<span asp-validation-for="Address" class="text-danger"></span>
+        						</div>
+        						<div class="input_box">
+        							<input type="text" asp-for="Apartment" placeholder="Apartment, suite, unit etc. (optional)"  >
+									<span asp-validation-for="Apartment" class="text-danger"></span>
+        						</div>
+        						<div class="input_box">
+        							<label>District<span>*</span></label>
+                                    <input type="text" asp-for="District" required  >
+									<span asp-validation-for="District" class="text-danger"></span>
+        						</div>
+								<div class="input_box">
+									<label>Postcode / ZIP <span>*</span></label>
+									<input type="text" asp-for="Postcode"  >
+									<span asp-validation-for="Postcode" class="text-danger"></span>
+								</div>
+								<div class="margin_between">
+									<div class="input_box space_between">
+										<label>Phone <span>*</span></label>
+										<input type="text" asp-for="PhoneNumber" required  >
+										<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+									</div>
+
+									<div class="input_box space_between">
+										<label>Email address <span>*</span></label>
+										<input type="email" asp-for="EmailAddress" required  >
+										<span asp-validation-for="EmailAddress" class="text-danger"></span>
+									</div>
+								</div>
+
+
+								<div class="margin_between">
+									<div class="input_box space_between">
+										<label>Password <span>*</span></label>
+										<input type="password" asp-for="Password" required  >
+										<span asp-validation-for="Password" class="text-danger"></span>
+									</div>
+
+									<div class="input_box space_between">
+										<label>Password Confirm<span>*</span></label>
+										<input type="password" asp-for="ConfirmPassword" required  >
+										<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+									</div>
+								</div>
+								
+        					</div>
+        					@* <div class="create__account">
+        						<div class="wn__accountbox">
+	        						<input class="input-checkbox" name="createaccount" value="1" type="checkbox">
+	        						<span>Create an account ?</span>
+        						</div>
+                                
+        						<div class="account__field">
+        							<form action="#">
+        								<label>Account password <span>*</span></label>
+        								<input type="text" placeholder="password">
+        							</form>
+        						</div>
+        					</div> *@
+        				</div>
+						
+
+                        <button class="btn btn-lg" style="width: 100%; margin-top:20px;">Checkout</button>
+                    
+						</form>
+        			</div>
+                    
+        			<div class="col-lg-6 col-12 md-mt-40 sm-mt-40">
+        				<div class="wn__order__box">
+        					<h3 class="onder__title">Your order</h3>
+        					<ul class="order__total">
+        						<li>Book</li>
+        						<li>Total</li>
+        					</ul>
+        					<ul class="order_product">
+                                @foreach (var item in cartData.shoppingCart.ShoppingCartItems)
+                                {
+                                    int sizeOfName = item.Book.Name.Length;
+                                    if(sizeOfName <= 35)
+                                    {
+                                        <li>@item.Book.Name × @item.Amount<span>@((item.Amount*item.Book.Price).ToString("c"))</span></li>
+                                    }
+                                    else{
+                                        <li alt="ffhg">@item.Book.Name.Remove(35) × @item.Amount<span>@((item.Amount*item.Book.Price).ToString("c"))</span></li>
+                                    }
+                                    
+                                }
+        						
+        						@* <li>Buscipit at magna × 1<span>$48.00</span></li>
+        						<li>Buscipit at magna × 1<span>$48.00</span></li>
+        						<li>Buscipit at magna × 1<span>$48.00</span></li> *@
+        					</ul>
+        					<ul class="shipping__method">
+        						<li>Cart Subtotal <span>@cartData.ShoppingCartTotal.ToString("c")</span></li>
+        						@* <li>Shipping 
+        							<ul>
+        								<li>
+        									<input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
+        									<label>Flat Rate: $48.00</label>
+        								</li>
+        								<li>
+        									<input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
+        									<label>Flat Rate: $48.00</label>
+        								</li>
+        							</ul>
+        						</li> *@
+        					</ul>
+        					<ul class="total__amount">
+        						<li>Order Total <span>@cartData.ShoppingCartTotal.ToString("c")</span></li>
+        					</ul>
+        				</div>
+					    <div id="accordion" class="checkout_accordion mt--30" role="tablist">
+						    <div class="payment">
+						        <div class="che__header" role="tab" id="headingOne">
+						          	<a class="checkout__title" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						                <span>Direct Bank Transfer</span>
+						          	</a>
+						        </div>
+						        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+					            	<div class="payment-body">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</div>
+						        </div>
+						    </div>
+						    @* <div class="payment">
+						        <div class="che__header" role="tab" id="headingTwo">
+						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							            <span>Cheque Payment</span>
+						          	</a>
+						        </div>
+						        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+					          		<div class="payment-body">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</div>
+						        </div>
+						    </div> *@
+						    <div class="payment">
+						        <div class="che__header" role="tab" id="headingThree">
+						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							            <span>Cash on Delivery</span>
+						          	</a>
+						        </div>
+						        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+					          		<div class="payment-body">Pay with cash upon delivery.</div>
+						        </div>
+						    </div>
+						    @* <div class="payment">
+						        <div class="che__header" role="tab" id="headingFour">
+						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+							            <span>PayPal <img src="~/images/icons/payment.png" alt="payment images"> </span>
+						          	</a>
+						        </div>
+						        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
+					          		<div class="payment-body">Pay with cash upon delivery.</div>
+						        </div>
+						    </div> *@
+					    </div>
+
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        <!-- End Checkout Area -->

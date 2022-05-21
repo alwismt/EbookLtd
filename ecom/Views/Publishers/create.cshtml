@@ -1,0 +1,55 @@
+@model Publisher
+@{
+    ViewData["Title"] = "Add New Publisher";
+    ViewData["Head"] = "Publisher Management | Add New Writter";
+    ViewData["Publishers"] = "active";
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+}
+
+<section class="textarea-select">
+    @* <div class="row">
+      <div class="col-12 mt-3 mb-1">
+          <h4 class="text-uppercase">Textarea &amp; Select</h4>
+          <p>Textual form controls—like <code>&lt;select&gt;</code>s, and <code>&lt;textarea&gt;</code>s—are styled with the <code>.form-control</code> class. Included are styles for general appearance, focus state, sizing, and more.</p>
+      </div>
+  </div> *@
+
+
+    <div class="row match-height">
+        
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" style="float: left;">Add New Publisher</h4>
+                    <a asp-route="publisher" class="card-title" style="float: right;">Back to Publishers</a>
+                </div>
+                <div class="offset-lg-2 col-lg-8 card-block" style="background-color: #f5f7ff; border-radius:30px; margin-bottom:30px;">
+                    <div class="card-body">
+                      <form action='@Url.Action("save")' method="POST" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <h5 class="mt-2">Publisher Name</h5>
+                        <fieldset class="form-group">
+                            <input type="text" class="form-control" placeholder="Enter Publisher's Name" asp-for="Name" required>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </fieldset>
+                        
+                        <h5 class="mt-2">Publisher Description</h5>
+                        <fieldset class="form-group">
+                            <textarea class="form-control" id="placeTextarea" rows="10" placeholder="Enter Publisher's Description" asp-for="Bio" required></textarea>
+                            <span asp-validation-for="Bio" class="text-danger"></span>
+                        </fieldset>
+                        <h5 class="mt-2">&nbsp;</h5>
+                        <fieldset class="form-group">
+                            <button type="submit" class="form-control">Add Publisher</button>
+                        </fieldset>
+                      </form>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+</section>

@@ -1,0 +1,70 @@
+@model IEnumerable<Publisher>
+@{
+    ViewData["Title"] = "List of Publishers";
+    ViewData["Head"] = "Publishers Management";
+    ViewData["Publishers"] = "active";
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+}
+
+    
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title"> 
+                    <a asp-route="NewPublisher" class="btn btn-primary"><i class="la la-plus">&nbsp;Add New Publisher &nbsp;</i></a>
+                </h4>
+				<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+				<div class="heading-elements">
+					<ul class="list-inline mb-0">
+						<li><a><i>Publishers List</i></a></li>
+						@* <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li> *@
+						<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+						@* <li><a data-action="close"><i class="ft-x"></i></a></li> *@
+					</ul>
+				</div>
+			</div>
+			<div class="card-content collapse show">
+				<div class="card-body">
+					@* <p class="card-text">Using the most basic table markup, here’s how <code>.table</code>-based tables look in Bootstrap. You can use any example of below table for your table and it can be use with any type of bootstrap tables. </p>
+					<p><span class="text-bold-600">Example 1:</span> Table with outer spacing</p> *@
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>Description</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+                                @{
+                                    int i = 0;
+                                }
+                                @foreach (var publisher in Model)
+                                {
+                                    i++;
+                                    <tr>
+                                        <th scope="row">@i</th>
+                                        <td>@publisher.Name</td>
+                                        
+                                        <td>@Html.DisplayFor(modelItem => publisher.Bio)</td>
+                                        <td>
+                                            <a asp-route="PublisherEdit" asp-route-id="@publisher.Id" class="btn btn-outline-primary"><i class="la la-pencil-square">&nbsp;Edit &nbsp;</i></a>
+                                            <br><br>
+                                            <a asp-route="PublisherDelete" asp-route-id="@publisher.Id" class="btn btn-outline-danger"> <i class="la la-trash"> Delete</i> </a>
+                                        </td>
+                                    </tr>
+                                }
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

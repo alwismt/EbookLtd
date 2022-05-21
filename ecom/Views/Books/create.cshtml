@@ -1,0 +1,176 @@
+@model NewBookVM
+@using ecom.Data;
+
+@{
+    ViewData["Title"] = "Add a New Book";
+    ViewData["Head"] = "Books Management";
+    ViewData["Books"] = "active";
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+}
+
+
+
+<section class="textarea-select">
+    <div class="row match-height">
+        
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" style="float: left;">Add a new book </h4>
+                    <a asp-route="books" class="card-title" style="float: right;">Back to Books</a>
+                </div>
+                <div>
+                <form asp-action="AddBook" method="POST" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-lg-6 card-block float-left" style="">
+                    <div class="card-body" style="padding-top: 0px !important;">
+                        
+                        <h5 class="mt-2">Book Name</h5>
+                        <fieldset class="form-group">
+                            <input type="text" class="form-control" placeholder="Enter book Name" asp-for="Name" id="slug-source" required onchange="slugCheck()">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </fieldset>
+
+
+                        <h5 class="mt-2">Book URL <small>(Book url generate automatically)</small></h5>
+                        <fieldset class="form-group">
+                            <input type="text" class="form-control" value="http://" id="slug-target" required disabled readonly>
+                        </fieldset>
+
+
+
+                        <h5 class="mt-2">Book Image</h5>
+                        <fieldset class="form-group">
+                            <input type="file" class="form-control" name="Image" accept="image/*" asp-for="Image" required>
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                            <span class="text-danger">@ViewBag.ErrorMessage</span>
+                        </fieldset>
+                        <h5 class="mt-2">Book Description</h5>
+                        <fieldset class="form-group">
+                            <textarea class="form-control" id="placeTextarea" rows="10" placeholder="Book Description" asp-for="Description"  required></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </fieldset>
+                        
+                        @* <input type="hidden" value="fdf" name="oldImage"> *@
+                       
+                    </div>
+                </div>
+                <div class="col-lg-6 card-block float-right">
+                    <div class="card-body" style="padding-top: 0px !important;">
+                        
+                        <h5 class="mt-2">Book Price</h5>
+                        <fieldset class="form-group">
+                            <input type="number" min="100" class="form-control" placeholder="Book Price" asp-for="Price" required>
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </fieldset>
+
+
+                        <h5 class="mt-2">Book Publisher</h5>
+                        <fieldset class="form-group">
+                            <select class="form-control" asp-for="PublisherId" asp-items="ViewBag.Publisher" required>
+                                @* <option aria-readonly="true">Select Option</option> *@
+                            </select>
+                            <span asp-validation-for="PublisherId" class="text-danger"></span>
+                        </fieldset>
+
+                        <h5 class="mt-2">Published Date</h5>
+                        <fieldset class="form-group">
+                            <input type="date" class="form-control" asp-for="PublishDate" required>
+                            <span asp-validation-for="PublishDate" class="text-danger"></span>
+                        </fieldset>
+
+                        <h5 class="mt-2">Book Category</h5>
+                        <fieldset class="form-group">
+                            <select class="form-control" asp-for="BookCategory" asp-items="Html.GetEnumSelectList<BookCategory>()" required>
+                            </select>
+                            <span asp-validation-for="BookCategory" class="text-danger"></span>
+                        </fieldset>
+
+
+                        <h5 class="mt-2">Book Writer(s)</h5>
+                        <fieldset class="form-group">
+                            <select class="form-control" asp-for="WritterIds" asp-items="ViewBag.Writers" required multiple></select>
+                            <span asp-validation-for="WritterIds" class="text-danger"></span>
+                        </fieldset>
+
+
+
+                    </div>
+                </div>
+
+                
+                <input type="hidden" asp-for="Slug" id="slug" required>    
+                <button type="submit" class="form-control" style="max-width:95%; margin:25px;">Add New Book</button>
+                        
+                    
+               
+                </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+
+
+
+</section>
+
+
+<script type="text/javascript">
+        function slugCheck() {
+ 
+            var a = document.getElementById("slug-source").value;
+
+            const from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;"
+            const to = "aaaaaeeeeeiiiiooooouuuunc------"
+
+             const newText = a.split('').map((letter, i) => letter.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i)))
+
+             var b = newText
+                .toString()                     // Cast to string
+                .toLowerCase()                  // Convert the string to lowercase letters
+                .trim()                         // Remove whitespace from both sides of a string
+                .replace(/\s+/g, '-')           // Replace spaces with -
+                .replace(/&/g, '')           // Replace & with 'and'
+                .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                .replace(/\-\-+/g, '');        // Replace multiple - with single -
+            var formdata = new FormData();
+            formdata.append('slug', b);
+            $.ajax({
+                type:'POST',
+                url: '/admin/bookurl/slugcheck/'+b,
+                data: formdata,
+                cache:false,
+                contentType: 'application/json; charset=utf-8',
+                processData: false,
+                success: (data) => {
+                    if(data.success == true){
+                        console.log(data);
+                        var c = location.protocol+ "//"+ location.host + "/book/" + b;
+                        document.getElementById("slug-target").value = c;
+                        document.getElementById("slug").value = b;
+
+                    }
+                    else{
+                        console.log(data);
+                        var c = location.protocol+ "//"+ location.host + "/book/" + b+"2";
+                        document.getElementById("slug-target").value = c;
+                        document.getElementById("slug").value = b+"2";
+
+                    }
+                },
+                error: function(data){
+                    setTimeout(function() { 
+                        slugCheck();
+                    }, 1000);;
+                }
+            });
+
+
+
+            
+ 
+            @* document.getElementById("slug-target-span").innerHTML = b; *@
+        }
+    </script>

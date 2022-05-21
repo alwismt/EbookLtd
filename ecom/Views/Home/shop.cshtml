@@ -1,0 +1,318 @@
+@model IEnumerable<Book>
+@using Microsoft.AspNetCore.Http.Extensions;
+@{
+    ViewData["Title"] = "Our Shop Page";
+    ViewData["des"] = "EBOOK LTD, Sri Lankan Biggest online book shop. Order online and get the books delivered to your doorstep.";
+    ViewData["metaimg"] = @Context.Request.Scheme + "://" +@Context.Request.Host + "/images/logo/ad_logo.png";
+    Layout = "~/Views/Shared/Front/_Layout.cshtml";
+}
+
+
+<style>
+    .mainmenu__nav .meninmenu li a
+    {
+            color: #000;
+    }
+	.section-padding--lg
+	{
+		padding: 30px 0;
+	}
+	.hr-bt
+	{
+		border-bottom: 1px solid #e1e1e1;
+		max-width: 98%;
+		margin-left: 1.5%;
+		margin-top: 5px;
+	}
+</style>
+        @* <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bradcaump__inner">
+                        	<h2 class="bradcaump-title">Checkout your favorites books</h2>
+                            <nav class="bradcaump-content">
+                              <a class="breadcrumb_item" asp-route="Home">Home</a>
+                              <span class="brd-separetor">/</span>
+                              <span class="breadcrumb_item active">Shop</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bradcaump area --> *@
+
+		<div class="ht__bradcaump__area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+						<div class="col-lg-6 float-left">
+							<div class="bradcaump__inner">
+								@if (!string.IsNullOrEmpty(ViewBag.search))
+								{
+									ViewData["search"] = ViewBag.search;
+									
+									<h2 class="bradcaump-title" style="font-size: 24px;">Collection 
+										<span class="brd-separetor">>></span>
+										Search
+									</h2>
+									<nav class="bradcaump-content">
+										<a class="breadcrumb_item" asp-route="Home">Home</a>
+										<span class="brd-separetor">>></span>
+										<span class="breadcrumb_item active">Collection</span>
+										<span class="brd-separetor">>></span>
+										<span class="breadcrumb_item active">Search result for "@ViewBag.search"</span>
+									</nav>
+								}
+								else if(!string.IsNullOrEmpty(ViewBag.category))
+								{
+									
+									
+									<h2 class="bradcaump-title" style="font-size: 24px;">Collection 
+										<span class="brd-separetor">>></span>
+										Categoty
+									</h2>
+									<nav class="bradcaump-content">
+										<a class="breadcrumb_item" asp-route="Home">Home</a>
+										<span class="brd-separetor">>></span>
+										<span class="breadcrumb_item active">Collection</span>
+										<span class="brd-separetor">>></span>
+										<span class="breadcrumb_item active">Category</span>
+										<span class="brd-separetor">>></span>
+										<span class="breadcrumb_item active">@ViewBag.category</span>
+									</nav>
+								}
+								else{
+									<h2 class="bradcaump-title" style="font-size: 24px;">Collection</h2>
+									<nav class="bradcaump-content">
+										<a class="breadcrumb_item" asp-route="Home">Home</a>
+										<span class="brd-separetor">>></span>
+										<span class="breadcrumb_item active">All Books</span>
+									</nav>
+								}
+								
+							</div>
+						</div>
+
+						<div class="col-lg-6 float-right d-none d-sm-block">
+							<div class="shop__list__wrapper d-flex flex-wrap flex-md-nowrap justify-content-between">
+								<div class="shop__list nav justify-content-center" role="tablist">
+									
+									<a class="nav-item nav-link active" data-toggle="tab" href="#nav-grid" role="tab"><i class="fa fa-th"></i></a>
+									<a class="nav-item nav-link" data-toggle="tab" href="#nav-list" role="tab"><i class="fa fa-list"></i></a>
+									
+								</div>
+								@* <p>Showing 1–12 of 40 results</p> *@
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="col-lg-12 hr-bt"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Start Shop Page -->
+        <div class="page-shop-sidebar left--sidebar bg--white section-padding--lg">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-lg-3 col-12 order-2 order-lg-1 md-mt-40 sm-mt-40">
+        				<div class="shop__sidebar">
+        					<aside class="wedget__categories poroduct--cat">
+        						<h3 class="wedget__title">Book Categories</h3>
+        						<ul>
+        							@foreach (var cn in ViewBag.count)
+									{
+										int ss = (int)cn.Category;
+										<li><a href="?category=@cn.Category">@cn.Category<span>(@cn.Count)</span></a></li>
+										
+									}
+        						</ul>
+        					</aside>
+        					
+        					<aside class="wedget__categories poroduct--tag">
+        						<h3 class="wedget__title">Tags</h3>
+        						<ul>
+									@foreach (var tgg in ViewBag.count)
+									{
+										<li><a href="?category=@tgg.Category">@tgg.Category</a></li>
+										
+									}
+        						</ul>
+        					</aside>
+        					@* <aside class="wedget__categories sidebar--banner">
+								<img src="images/others/banner_left.jpg" alt="banner images">
+								<div class="text">
+									<h2>new products</h2>
+									<h6>save up to <br> <strong>40%</strong>off</h6>
+								</div>
+        					</aside> *@
+        				</div>
+        			</div>
+        			<div class="col-lg-9 col-12 order-1 order-lg-2">
+        				@* <div class="row">
+        					<div class="col-lg-12">
+								<div class="shop__list__wrapper d-flex flex-wrap flex-md-nowrap justify-content-between">
+									<div class="shop__list nav justify-content-center" role="tablist">
+			                            <a class="nav-item nav-link active" data-toggle="tab" href="#nav-grid" role="tab"><i class="fa fa-th"></i></a>
+			                            <a class="nav-item nav-link" data-toggle="tab" href="#nav-list" role="tab"><i class="fa fa-list"></i></a>
+			                        </div>
+			                        
+		                        </div>
+        					</div>
+        				</div> *@
+        				<div class="tab__container">
+	        				<div class="shop-grid tab-pane fade show active" id="nav-grid" role="tabpanel">
+	        					<div class="row">
+									@{
+										int ni = 0;
+									}
+                                    @foreach (var item in Model)
+                                    {
+										ni++;
+		        					<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+			        					<div class="product">
+			        						<div class="product__thumb">
+			        							<a class="first__img" asp-action="BookView" asp-route-slug="@item.Slug"><img src="@item.Image" alt="@item.Name" class="product_image"></a>
+			        							@if(ni <= 5)
+												{
+													<div class="new__box">
+														<span class="new-label">New</span>
+													</div>
+												}
+			        							
+			        							<ul class="prize position__right__bottom d-flex">
+			        								<li>LKR @item.Price.00</li>
+			        							</ul>
+			        						</div>
+			        						<div class="product__content">
+			        							<h4><a asp-action="BookView" asp-route-slug="@item.Slug">@item.Name</a></h4>
+			        						</div>
+			        					</div>
+		        					</div>
+		        					@* <!-- End Single Product --> *@
+                                    }
+									@if(ni == 0)
+									{
+										<div class="col-lg-12 col-md-12 col-sm-12 col-12" style="padding: 40px;">
+											<h3>We're Sorry We were not able to find a match on our Collection!  </h3>
+											<h4>You are so welcome to try another search, </h4>
+											<aside class="wedget__categories poroduct--tag">
+												<br>
+												<ul>
+													@foreach (var tg in ViewBag.count)
+													{
+														int ss = (int)tg.Category;
+														<li><a href="?category=@tg.Category">@tg.Category</a></li>
+														
+													}
+												</ul>
+											</aside>
+										</div>
+									}
+	        						
+	        					</div>
+	        					<ul class="wn__pagination">
+									@{
+										int currentpage = ViewBag.currentpage;
+										int pageNumber = ViewBag.pageNumber;
+										int i;
+
+										for(i = 1; i <= pageNumber; i++){
+											if(ViewBag.search == null){
+												if(i == currentpage)
+												{
+													<li class="active"><a href="?page=@i">@i</a></li>
+												}
+												else
+												{
+													<li><a href="?page=@i">@i</a></li>
+												}
+											}
+											else{
+												if(i == currentpage)
+												{
+													<li class="active"><a href="?search=@ViewBag.search&page=@i">@i</a></li>
+												}
+												else
+												{
+													 
+													<li><a href="?search=@ViewBag.search&page=@i">@i</a></li>
+												}
+											}
+											
+										}
+
+										
+										if(i != 1)
+										{
+											int b = i - 1;
+											int product = (ViewBag.limit*b);
+											if(product < ViewBag.totalProduct)
+											{
+												if(ViewBag.search == null)
+												{
+													if(i == currentpage)
+													{
+														<li class="active"><a href="?page=@i">@i</a></li>
+													}
+													else{
+														<li><a href="?page=@i">@i</a></li>
+													}
+													
+												}
+												else{
+													if(i == currentpage)
+													{
+														<li class="active"><a href="?search=@ViewBag.search&page=@i">@i</a></li>
+														
+													}
+													else{
+														<li><a href="?search=@ViewBag.search&page=@i">@i</a></li>
+
+													}
+												}
+											}
+										}
+											
+									}
+	        					</ul>
+	        				</div>
+	        				<div class="shop-grid tab-pane fade" id="nav-list" role="tabpanel">
+	        					<div class="list__view__wrapper">
+	        						<!-- Start Single Product -->
+                                    @foreach (var bk in Model){
+	        						<div class="list__view">
+	        							<div class="thumb" style="margin-bottom: 25px;">
+                                            <a class="first__img" asp-action="BookView" asp-route-slug="@bk.Slug"><img src="@bk.Image" alt="@bk.Name"></a>
+	        							</div>
+	        							<div class="content">
+	        								<h2><a href="single-product.html">@bk.Name</a></h2>
+	        								
+	        								<ul class="prize__box">
+	        									<li>LKR @bk.Price.00</li>
+	        								</ul>
+	        								<p>@bk.Description</p>
+	        								<ul class="cart__action d-flex">
+	        									<li class="cart"><a asp-action="BookView" asp-route-slug="@bk.Slug">View Book</a></li>
+                                                <li class="cart"><a asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@bk.Id">Add to cart</a></li>
+	        									@* <li class="wishlist"><a href="cart.html"></a></li>
+	        									<li class="compare"><a href="cart.html"></a></li> *@
+	        								</ul>
+
+	        							</div>
+	        						</div>
+                                    }
+	        						<!-- End Single Product -->
+	        						
+	        					</div>
+	        				</div>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+        <!-- End Shop Page -->
