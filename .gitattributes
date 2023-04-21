@@ -1,2 +1,4 @@
+*.cshtml diff=cs
+*.html linguist-detectable=false
 /ecom/wwwroot/* linguist-vendored
 /ecom/wwwroot/** linguist-vendored
