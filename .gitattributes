@@ -1,5 +1,6 @@
 *.cs linguist-language=csharp
 *.cshtml diff=cs
 *.html linguist-detectable=false
+*.cshtml linguist-detectable=false
 /ecom/wwwroot/* linguist-vendored
 /ecom/wwwroot/** linguist-vendored
