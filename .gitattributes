@@ -1,1 +1,2 @@
-/ecom/wwwroot/ linguist-vendored
+/ecom/wwwroot/* linguist-vendored
+/ecom/wwwroot/** linguist-vendored
