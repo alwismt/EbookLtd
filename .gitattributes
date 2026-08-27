@@ -1,4 +1,7 @@
-*.cs linguist-language=csharp
-*.cshtml diff=cs
-*.html linguist-detectable=false
-*.cshtml linguist-detectable=false
+*.cs linguist-language=C#
+*.cshtml linguist-language=C#
+
+*.css -linguist-detectable
+
+*.min.css linguist-generated
+*.min.js linguist-generated
