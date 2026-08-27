@@ -1,0 +1,40 @@
+## Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.dll
+*.pdb
+*.exe
+
+## IDE / editor
+.vs/
+*.user
+*.suo
+*.userosscache
+*.rsuser
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+
+## OS
+.DS_Store
+Thumbs.db
+
+## NuGet / publish / test
+*.nupkg
+**/packages/*
+publish/
+*.pubxml.user
+TestResults/
+[Ll]ogs/
+*.log
+
+## Local secrets
+.env
+.env.*
+secrets.json
+appsettings.*.local.json
