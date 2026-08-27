@@ -1,10 +1,8 @@
-using System;
 using ecom.Data;
 using Microsoft.EntityFrameworkCore;
 using ecom.Data.Services;
 using ecom.Models;
 using ecom.Data.Cart;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -12,10 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 //DbContext configuration
-builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(
-                "server=127.0.0.1;user=ad_book;password=zZHaEepZ7sCi8wBG;port=3306;database=ad_book;Connect Timeout=5;",
-                new MariaDbServerVersion(new Version(10, 4, 19))
-                ));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        npgsql => npgsql.SetPostgresVersion(16, 0)));
 
 //Services Configuration
 builder.Services.AddScoped<IWritersService, WritersService>();
@@ -67,7 +65,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

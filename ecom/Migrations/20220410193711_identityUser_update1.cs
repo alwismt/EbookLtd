@@ -18,9 +18,8 @@ namespace ecom.Migrations
             migrationBuilder.AddColumn<string>(
                 name: "City",
                 table: "AspNetUsers",
-                type: "longtext",
-                nullable: true)
-                .Annotation("MySql:CharSet", "utf8mb4");
+                type: "text",
+                nullable: true);
         }
     }
 }

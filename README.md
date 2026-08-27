@@ -1,7 +1,7 @@
 
 # EBooK LTD
 
-Ebook ltd ASP.NET MVC 6 application, powered by Microsoft, demonstrating a single-process (monolithic) application architecture and deployment mode
+Ebook ltd ASP.NET Core MVC application targeting .NET 10, powered by Microsoft, demonstrating a single-process (monolithic) application architecture and deployment mode. Uses Entity Framework Core with PostgreSQL 16 (Npgsql).
 
 ## Installation
 
@@ -9,14 +9,21 @@ The first time you run the application, it will seed both databases with data su
 Admin password and email seed from "AppDBInitializer" "Data/AppDBInitializer.cs"
 
 
-1. Ensure your connection strings in Program.cs point to a local SQL Server instance.
+1. Configure PostgreSQL 16 and set `ConnectionStrings:DefaultConnection` in `ecom/appsettings.json` (or override via the `ConnectionStrings__DefaultConnection` environment variable / user secrets). Do not commit real passwords.
 
-```bash
-//DbContext configuration
-builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(
-    "server=127.0.0.1;user=ad_book;password=<password goes here>;port=3306;database=ad_book;Connect Timeout=5;",
-    new MariaDbServerVersion(new Version(10, 4, 19))
-));
+```json
+"ConnectionStrings": {
+  "DefaultConnection": "Host=127.0.0.1;Port=5432;Database=ad_book;Username=ad_book;Password=YOUR_PASSWORD;Timeout=5"
+}
+```
+
+`Program.cs` registers the DbContext with:
+
+```csharp
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        npgsql => npgsql.SetPostgresVersion(16, 0)));
 ```
 
  2. Ensure the tool EF was already installed
@@ -29,10 +36,10 @@ dotnet tool update --global dotnet-ef
 dotnet restore
 dotnet tool restore
 ```
-4. Run the application
+4. Apply migrations to PostgreSQL, then run the application
 ## Demo Visit
 
-https://ebook.cirp.xyz
+https://ebook-dotnet.alwis.dev
 
 Admin Username: admin@ebook.lk
 
@@ -42,4 +49,3 @@ Password: Ebook@1234
 ## Screenshots
 
 ![App Screenshot](https://imgs.cirp.xyz/ebook/homepage.png)
-

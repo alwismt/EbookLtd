@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -14,133 +14,97 @@ namespace ecom.Migrations
                 table: "Books",
                 newName: "Id");
 
-            migrationBuilder.UpdateData(
-                table: "Writters",
-                keyColumn: "Name",
-                keyValue: null,
-                column: "Name",
-                value: "");
+            migrationBuilder.Sql("""UPDATE "Writters" SET "Name" = '' WHERE "Name" IS NULL;""");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
                 table: "Writters",
-                type: "longtext",
+                type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "longtext",
-                oldNullable: true)
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text",
+                oldNullable: true);
 
-            migrationBuilder.UpdateData(
-                table: "Writters",
-                keyColumn: "Bio",
-                keyValue: null,
-                column: "Bio",
-                value: "");
+            migrationBuilder.Sql("""UPDATE "Writters" SET "Bio" = '' WHERE "Bio" IS NULL;""");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Bio",
                 table: "Writters",
-                type: "longtext",
+                type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "longtext",
-                oldNullable: true)
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text",
+                oldNullable: true);
 
-            migrationBuilder.UpdateData(
-                table: "Publishers",
-                keyColumn: "Name",
-                keyValue: null,
-                column: "Name",
-                value: "");
+            migrationBuilder.Sql("""UPDATE "Publishers" SET "Name" = '' WHERE "Name" IS NULL;""");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
                 table: "Publishers",
-                type: "longtext",
+                type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "longtext",
-                oldNullable: true)
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text",
+                oldNullable: true);
 
-            migrationBuilder.UpdateData(
-                table: "Publishers",
-                keyColumn: "Bio",
-                keyValue: null,
-                column: "Bio",
-                value: "");
+            migrationBuilder.Sql("""UPDATE "Publishers" SET "Bio" = '' WHERE "Bio" IS NULL;""");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Bio",
                 table: "Publishers",
-                type: "longtext",
+                type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "longtext",
-                oldNullable: true)
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text",
+                oldNullable: true);
 
-            migrationBuilder.AlterColumn<double>(
-                name: "Price",
-                table: "Books",
-                type: "double",
-                nullable: false,
-                defaultValue: 0.0,
-                oldClrType: typeof(string),
-                oldType: "longtext",
-                oldNullable: true)
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+            migrationBuilder.Sql("""UPDATE "Books" SET "Price" = '0' WHERE "Price" IS NULL OR BTRIM("Price") = '';""");
+            migrationBuilder.Sql("""
+                ALTER TABLE "Books" ALTER COLUMN "Price" TYPE double precision USING "Price"::double precision;
+                ALTER TABLE "Books" ALTER COLUMN "Price" SET NOT NULL;
+                ALTER TABLE "Books" ALTER COLUMN "Price" SET DEFAULT 0.0;
+                """);
 
             migrationBuilder.AlterColumn<int>(
                 name: "BookCategory",
                 table: "Books",
-                type: "int",
+                type: "integer",
                 nullable: false,
                 defaultValue: 0,
                 oldClrType: typeof(int),
-                oldType: "int",
+                oldType: "integer",
                 oldNullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "Slug",
                 table: "Books",
-                type: "longtext",
-                nullable: true)
-                .Annotation("MySql:CharSet", "utf8mb4");
+                type: "text",
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Email = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserId = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Email = table.Column<string>(type: "text", nullable: true),
+                    UserId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "OrderItems",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Amount = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<double>(type: "double", nullable: false),
-                    BookId = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Amount = table.Column<int>(type: "integer", nullable: false),
+                    Price = table.Column<double>(type: "double precision", nullable: false),
+                    BookId = table.Column<int>(type: "integer", nullable: false),
+                    OrderId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -157,8 +121,7 @@ namespace ecom.Migrations
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_BookId",
@@ -191,59 +154,50 @@ namespace ecom.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
                 table: "Writters",
-                type: "longtext",
+                type: "text",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "longtext")
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Bio",
                 table: "Writters",
-                type: "longtext",
+                type: "text",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "longtext")
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
                 table: "Publishers",
-                type: "longtext",
+                type: "text",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "longtext")
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Bio",
                 table: "Publishers",
-                type: "longtext",
+                type: "text",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "longtext")
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Price",
                 table: "Books",
-                type: "longtext",
+                type: "text",
                 nullable: true,
                 oldClrType: typeof(double),
-                oldType: "double")
-                .Annotation("MySql:CharSet", "utf8mb4");
+                oldType: "double precision");
 
             migrationBuilder.AlterColumn<int>(
                 name: "BookCategory",
                 table: "Books",
-                type: "int",
+                type: "integer",
                 nullable: true,
                 oldClrType: typeof(int),
-                oldType: "int");
+                oldType: "integer");
         }
     }
 }
